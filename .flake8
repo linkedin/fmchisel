@@ -1,0 +1,9 @@
+# .flake8
+[flake8]
+max-line-length = 120
+exclude =
+    .git,
+    __pycache__
+extend-ignore=E501,B006,E731,A002,E203,
+per-file-ignores =
+    /src/fmchisel/__init__.py:F401
