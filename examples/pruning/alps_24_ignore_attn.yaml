@@ -1,0 +1,7 @@
+sparsity_stage:
+  sparsity_modifiers:
+    ALPSModifier:
+      sparsity: 0.5
+      mask_structure: "2:4"
+      targets: ["Linear"]
+      ignore: ["re:.*lm_head", "re:.*q_proj", "re:.*k_proj", "re:.*v_proj", "re:.*o_proj"]
