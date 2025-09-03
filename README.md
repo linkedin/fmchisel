@@ -71,7 +71,7 @@ tests/                 # PyTest suite
 | Area            | Algorithm(s) | Implementation |
 |-----------------|-------------------|----------------|
 | **Pruning**     | ALPS | `fmchisel.pruning.alps` |
-|                 | OSSCAR | `fmchisel.pruning.osscar` |
+| **Pruning**     | OSSCAR | `fmchisel.pruning.osscar` |
 | **Quantization**| QuantEase | `fmchisel.quantization.quantease` |
 | **Distillation**| Lightweight KD recipes | `fmchisel.distillation` |
 | **Optimization**| AdamW Schedule-Free | `fmchisel.optimizers.adamw_schedulefree` |
