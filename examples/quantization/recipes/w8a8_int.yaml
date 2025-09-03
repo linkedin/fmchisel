@@ -1,0 +1,26 @@
+quantization_stage:
+  run_type: oneshot
+  quantization_modifiers:
+    SmoothQuantModifier:
+      smoothing_strength: 0.8
+      ignore: null
+    QuantEaseModifier:
+      dampening_frac: 0.01
+      num_iter: 10
+      ignore: ["lm_head"]
+      config_groups:
+        group_0:
+          targets:
+            - "Linear"
+          input_activations: 
+            num_bits: 8
+            type: "int"
+            symmetric: true
+            strategy: 'token'
+            dynamic: true
+          output_activations: null
+          weights:
+            num_bits: 8
+            type: "int"
+            symmetric: true
+            strategy: "channel"

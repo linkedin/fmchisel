@@ -1,0 +1,20 @@
+
+quantization_stage:
+  run_type: oneshot
+  quantization_modifiers:
+    QuantEaseModifier:
+      dampening_frac: 0.01
+      ignore: ["re:.*lm_head"]
+      num_iter: 5
+      config_groups:
+        group_0:
+          targets:
+            - "Linear"
+          input_activations: null
+          output_activations: null
+          weights:
+            num_bits: 4
+            type: "int"
+            symmetric: true
+            strategy: "group"
+            group_size: 128
