@@ -23,14 +23,23 @@ FMCHISEL is built on **PyTorch** and integrates seamlessly with 📚 **🤗 Tran
 
 ## 📦 Installation
 
-The package will soon be available on PyPI. Until then, install from source (note that a Linux system will be required):
+Install from source. Linux is required (enforced by setup). Installing on macOS or Windows will fail at setup time:
 
 ```bash
 # Clone the repo
 git clone https://github.com/linkedin/FMCHISEL.git
 cd FMCHISEL
 
-# Install with all optional dependencies
+# Base install
+pip install -e .
+
+# Optional extras
+# - inference: pruning/quantization via llmcompressor
+# - train: distillation (Lightning, liger-kernel)
+# - all: both of the above
+pip install -e ".[inference]"
+pip install -e ".[train]"
+# or
 pip install -e ".[all]"
 ```
 
@@ -38,13 +47,14 @@ pip install -e ".[all]"
 
 ## 🚀 Quick Start
 
-Start with these ready-to-run recipes from the `examples/` folder:
+Ready-to-run recipes in `examples/`:
 
-* **Distillation:** `examples/distillation/run.sh` – distill a 8B teacher into a 1B student model
-* **Unstructured Pruning:** `examples/pruning/run.sh` – N:M semi-structured pruning in one shot  
-* **Structured Pruning:** `examples/structured_pruning/run.sh` – remove entire heads / neurons  
+- Distillation: `bash examples/distillation/run.sh`
+- Unstructured or N:M pruning (ALPS, SparseGPT, Wanda): `bash examples/pruning/run.sh`
+- Structured pruning (OSSCAR): `bash examples/structured_pruning/run.sh`
+- Quantization (QuantEase via YAML recipes): `bash examples/quantization/run_quantization.sh`
 
-Simply run a script (or tweak hyper-parameters) and you’re good to go!
+Tweak the scripts or pass flags to adjust models, datasets, and hyper-parameters.
 
 ---
 
@@ -55,7 +65,7 @@ fmchisel/
 │
 ├─ data/               # Calibration & data utilities
 ├─ distillation/       # Knowledge-distillation components
-├─ pruning/            # ALPS, OSSCAR, SparseGPT, structured pruning
+├─ pruning/            # ALPS + OSSCAR implementations; SparseGPT/Wanda via llmcompressor
 ├─ quantization/       # QuantEase & helpers
 ├─ optimizers/         # AdamW schedule-free implementation
 ├─ utils/              # Callbacks, training helpers
@@ -68,13 +78,80 @@ tests/                 # PyTest suite
 
 ## 🧪 Research Components
 
-| Area            | Algorithm(s) | Implementation |
-|-----------------|-------------------|----------------|
-| **Pruning**     | ALPS | `fmchisel.pruning.alps` |
-| **Pruning**     | OSSCAR | `fmchisel.pruning.osscar` |
-| **Quantization**| QuantEase | `fmchisel.quantization.quantease` |
-| **Distillation**| Lightweight KD recipes | `fmchisel.distillation` |
-| **Optimization**| AdamW Schedule-Free | `fmchisel.optimizers.adamw_schedulefree` |
+| Area             | Algorithm(s)                  | Implementation Module |
+|------------------|-------------------------------|-----------------------|
+| **Pruning**      | ALPS (unstructured, N:M)      | `fmchisel.pruning.alps` |
+| **Structured**   | OSSCAR (MLP/attn-group drop)  | `fmchisel.pruning.osscar` |
+| **Quantization** | QuantEase (weight-only/group) | `fmchisel.quantization.quantease` |
+| **Distillation** | Per-token KD (e.g., JSD)      | `fmchisel.distillation.losses` |
+| **Optimization** | AdamW Schedule-Free           | `fmchisel.optimizers.adamw_schedulefree` |
+
+Notes:
+- SparseGPT and Wanda pruning are available through `llmcompressor` and wired up in `examples/pruning/pruning_utils.py`.
+- Quantization uses `llmcompressor` pipelines with a QuantEase modifier and YAML recipes.
+ - To combine pruning and quantization, compose both modifiers in a single YAML recipe and pass it to `llmcompressor.oneshot`. See `llmcompressor` documentation for composing modifiers. Example composite recipes are not included in this repo.
+
+### Minimal Python usage (grounded in the repo)
+
+Pruning (ALPS or SparseGPT/Wanda) via `oneshot` and `HFCalibrationDataLoader`:
+
+```python
+from llmcompressor import oneshot
+from transformers import AutoTokenizer
+from fmchisel.data.calibration_datautil import HFCalibrationDataLoader
+from fmchisel.pruning.alps.base import ALPSModifier
+
+model_id = "Qwen/Qwen3-0.6B"
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+dataset = HFCalibrationDataLoader(
+    nsamples=1024,
+    tokenizer=tokenizer,
+    max_seq_length=tokenizer.model_max_length,
+    dataset="allenai/c4",
+    data_field="text",
+    data_dir="en",
+    data_split="train",
+).get_tokenized_calibration()
+
+recipe = ALPSModifier(sparsity=0.5, mask_structure="2:4", targets="__ALL_PRUNABLE__")
+oneshot(model=model_id, dataset=dataset, recipe=recipe, output_dir="out/pruned")
+```
+
+Structured pruning (OSSCAR):
+
+```python
+from llmcompressor import oneshot
+from transformers import AutoTokenizer
+from fmchisel.data.calibration_datautil import HFCalibrationDataLoader
+from fmchisel.pruning.osscar.base import OSSCARModifier
+
+model_id = "Qwen/Qwen3-0.6B"
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+dataset = HFCalibrationDataLoader(
+    nsamples=1024,
+    tokenizer=tokenizer,
+    max_seq_length=tokenizer.model_max_length,
+    dataset="allenai/c4",
+    data_field="text",
+    data_dir="en",
+    data_split="train",
+).get_tokenized_calibration()
+
+recipe = OSSCARModifier(num_drop_mlp_neuron=128, num_drop_attn_group=1)
+oneshot(model=model_id, dataset=dataset, recipe=recipe, output_dir="out/structured")
+```
+
+Quantization (QuantEase) is driven by YAML recipes (see `examples/quantization/recipes/*`):
+
+```bash
+bash examples/quantization/run_quantization.sh
+```
+
+Distillation with JSD loss (Lightning + FSDP):
+
+```bash
+bash examples/distillation/run.sh
+```
 
 ---
 

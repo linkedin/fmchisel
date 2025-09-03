@@ -80,12 +80,10 @@ class QuantizationConfig:
 
     model: str
     output_dir: str
-    quantization_recipe: str = (
-        field(
-            metadata={
-                "help": "Use W4A16, W8A8, or enter a path to a yaml recipe. Example recipes can be found at flows/inference/quantization/src/recipes."
-            },
-        ),
+    quantization_recipe: str = field(
+        metadata={
+            "help": "Use W4A16, W8A8, or a path to a YAML recipe (see examples/quantization/recipes)."
+        }
     )
     model_max_length: int = field(
         default=2048,

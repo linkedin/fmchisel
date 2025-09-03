@@ -2,7 +2,7 @@
 import platform
 import sys
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 def verify_os():
@@ -57,7 +57,7 @@ verify_os()
 setup(
     name="FMCHISEL",
     package_dir={"": "src"},
-    packages=["fmchisel"],
+    packages=find_packages(where="src", include=["fmchisel*"]),
     install_requires=get_default_dependencies(),
     extras_require=get_optional_dependencies(),
 )
