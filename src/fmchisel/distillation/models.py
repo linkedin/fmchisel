@@ -84,7 +84,6 @@ def forward_redirect(student_module, teacher_module, method, *args, **kwargs):
     return _FSDPForwardRedirection()(teacher_module, first_layer, *args, **kwargs)
 
 
-# Referred to code from @qsong PR:https://github.com/linkedin-multiproduct/360brew/pull/1072
 class DistillLanguageModel(pl.LightningModule):
     """
     A PyTorch Lightning module for knowledge distillation training of language models.
