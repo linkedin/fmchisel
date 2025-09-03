@@ -28,7 +28,7 @@ The package will soon be available on PyPI. Until then, install from source (not
 ```bash
 # Clone the repo
 git clone https://github.com/linkedin/FMCHISEL.git
-cd fmchisel
+cd FMCHISEL
 
 # Install with all optional dependencies
 pip install -e ".[all]"
