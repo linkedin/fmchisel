@@ -23,7 +23,13 @@ FMCHISEL is built on **PyTorch** and integrates seamlessly with 📚 **🤗 Tran
 
 ## 📦 Installation
 
-Install from source. Linux is required (enforced by setup). Installing on macOS or Windows will fail at setup time:
+### PyPi Package
+```bash
+pip install fmchisel
+```
+
+#### Souece
+To install from source Linux is required (enforced by setup). Installing on macOS or Windows will fail at setup time:
 
 ```bash
 # Clone the repo
