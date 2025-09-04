@@ -173,7 +173,7 @@ bash examples/distillation/run.sh
 See [LICENSE](LICENSE) for details.
 
 ## 📝 Citation
-If you use this library, we ask you to cite the following technical report:
+If you use this library, we ask you to please cite the following technical report:
 ```
 @article{behdin2025efficient,
   title={Efficient AI in Practice: Training and Deployment of Efficient LLMs for Industry Applications},
