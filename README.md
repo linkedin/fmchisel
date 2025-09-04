@@ -182,3 +182,30 @@ If you use this library, we ask you to please cite the following technical repor
   year={2025}
 }
 ```
+### Additional references
+This library implements compression methods from the following papers:
+```
+@article{meng2024alps,
+  title={Alps: Improved optimization for highly sparse one-shot pruning for large language models},
+  author={Meng, Xiang and Behdin, Kayhan and Wang, Haoyue and Mazumder, Rahul},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={37594--37625},
+  year={2024}
+}
+```
+```
+@inproceedings{mengosscar,
+  title={OSSCAR: One-Shot Structured Pruning in Vision and Language Models with Combinatorial Optimization},
+  author={Meng, Xiang and Ibrahim, Shibal and Behdin, Kayhan and Hazimeh, Hussein and Ponomareva, Natalia and Mazumder, Rahul},
+  booktitle={Forty-first International Conference on Machine Learning}
+}
+```
+```
+@article{behdin2023quantease,
+  title={QuantEase: Optimization-based quantization for language models},
+  author={Behdin, Kayhan and Acharya, Ayan and Gupta, Aman and Song, Qingquan and Zhu, Siyu and Keerthi, Sathiya and Mazumder, Rahul},
+  journal={arXiv preprint arXiv:2309.01885},
+  year={2023}
+}
+```
