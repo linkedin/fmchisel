@@ -30,8 +30,12 @@ jobs:
         VERSION=$(python -c "import toml; print(toml.load('pyproject.toml')['project']['version'])")
         DATE=$(date +%Y%m%d%H%M%S)
         NEW_VERSION="$VERSION.dev$DATE"
-        sed -i "s/name = \"fmchisel\"/name = \"fmchisel_nightly\"/" pyproject.toml
+        # sed -i "s/name = \"fmchisel\"/name = \"fmchisel_nightly\"/" pyproject.toml
         sed -i "s/version = \"$VERSION\"/version = \"$NEW_VERSION\"/" pyproject.toml
+
+        echo "Updated package configuration:"
+        echo "Package name: $(python -c "import toml; print(toml.load('pyproject.toml')['project']['name'])")"
+        echo "Package version: $(python -c "import toml; print(toml.load('pyproject.toml')['project']['version'])")"
 
     - name: Build the binary
       run: python3 -m build
