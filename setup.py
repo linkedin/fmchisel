@@ -55,7 +55,7 @@ def get_optional_dependencies():
 verify_os()
 
 setup(
-    name="FMCHISEL",
+    name="fmchisel",
     package_dir={"": "src"},
     packages=find_packages(where="src", include=["fmchisel*"]),
     install_requires=get_default_dependencies(),

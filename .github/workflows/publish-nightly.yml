@@ -45,14 +45,14 @@ jobs:
         name: python-package-distributions
         path: dist/
 
-  publish-to-testpypi:
-    name: Publish to TestPyPI
+  pypi-publish:
+    name: Publish to PyPI
     needs:
     - build
     runs-on: ubuntu-latest
 
     environment:
-      name: testpypi
+      name: pypi
       url: https://pypi.org/p/fmchisel
 
     permissions:
@@ -64,7 +64,7 @@ jobs:
       with:
         name: python-package-distributions
         path: dist/
-    - name: Publish distribution 📦 to TestPyPI
+    - name: Publish distribution 📦 to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         verbose: true
