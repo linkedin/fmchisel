@@ -60,4 +60,9 @@ setup(
     packages=find_packages(where="src", include=["fmchisel*"]),
     install_requires=get_default_dependencies(),
     extras_require=get_optional_dependencies(),
+    project_urls={
+        'Documentation': 'https://github.com/linkedin/FMCHISEL',
+        'Source': 'https://github.com/linkedin/FMCHISEL',
+        'Bug Tracker': 'https://github.com/linkedin/FMCHISEL/issues',
+    }
 )
