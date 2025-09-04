@@ -171,3 +171,14 @@ bash examples/distillation/run.sh
 ## 🔒 License
 
 See [LICENSE](LICENSE) for details.
+
+## 📝 Citation
+If you use this library, we ask you to cite the following technical report:
+```
+@article{behdin2025efficient,
+  title={Efficient AI in Practice: Training and Deployment of Efficient LLMs for Industry Applications},
+  author={Behdin, Kayhan and Dai, Yun and Fatahibaarzi, Ata and Gupta, Aman and Song, Qingquan and Tang, Shao and Sang, Hejian and Dexter, Gregory and Zhu, Sirou and Zhu, Siyu and others},
+  journal={arXiv preprint arXiv:2502.14305},
+  year={2025}
+}
+```
