@@ -175,12 +175,15 @@ See [LICENSE](LICENSE) for details.
 ## 📝 Citation
 If you use this library, we ask you to please cite the following technical report:
 ```
-@article{behdin2025efficient,
-  title={Efficient AI in Practice: Training and Deployment of Efficient LLMs for Industry Applications},
-  author={Behdin, Kayhan and Dai, Yun and Fatahibaarzi, Ata and Gupta, Aman and Song, Qingquan and Tang, Shao and Sang, Hejian and Dexter, Gregory and Zhu, Sirou and Zhu, Siyu and others},
-  journal={arXiv preprint arXiv:2502.14305},
-  year={2025}
+@software{behdin2025,
+  author       = {Behdin, Kayhan and Fatahibaarzi, Ata and Yun, Dai and 
+                  Song, Qingquan and Kothapalli, Vignesh and Tang, Shao and 
+                  Sang, Hejian and Gupta, Aman and Wang, Zhipeng and 
+                  Dexter, Gregory and Zhu, Sirou and Zhu, Siyu},
+  title        = {FMCHISEL},
+  year         = {2025},
 }
+
 ```
 ### Additional references
 This library implements compression methods from the following papers:
