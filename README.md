@@ -173,7 +173,6 @@ bash examples/distillation/run.sh
 See [LICENSE](LICENSE) for details.
 
 ## 📝 Citation
-If you use this library, we ask you to please cite the following technical report:
 ```
 @software{behdin2025,
   author       = {Behdin, Kayhan and Fatahibaarzi, Ata and Yun, Dai and 
