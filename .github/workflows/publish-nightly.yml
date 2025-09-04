@@ -30,7 +30,6 @@ jobs:
         VERSION=$(python -c "import toml; print(toml.load('pyproject.toml')['project']['version'])")
         DATE=$(date +%Y%m%d%H%M%S)
         NEW_VERSION="$VERSION.dev$DATE"
-        # sed -i "s/name = \"fmchisel\"/name = \"fmchisel_nightly\"/" pyproject.toml
         sed -i "s/version = \"$VERSION\"/version = \"$NEW_VERSION\"/" pyproject.toml
 
         echo "Updated package configuration:"
@@ -54,7 +53,7 @@ jobs:
 
     environment:
       name: testpypi
-      url: https://test.pypi.org/p/fmchisel
+      url: https://pypi.org/p/fmchisel
 
     permissions:
       id-token: write  # IMPORTANT: mandatory for trusted publishing
@@ -68,5 +67,4 @@ jobs:
     - name: Publish distribution 📦 to TestPyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        repository-url: https://test.pypi.org/legacy/
         verbose: true
