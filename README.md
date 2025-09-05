@@ -33,7 +33,9 @@ To install from source Linux is required (enforced by setup). Installing on macO
 
 ```bash
 # Clone the repo
+
 git clone https://github.com/linkedin/fmchisel.git
+
 cd fmchisel
 
 # Base install
