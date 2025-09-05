@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fmchisel"
-version = "0.1.1"
+version = "0.1.2"
 description = "FMCHISEL is a library which aims at improving LLM training + inference effectiveness and efficiency from an algorithm perspective with quantization, pruning, optimizers, etc."
 urls = { "Homepage" = "https://github.com/linkedin/FMCHISEL" }
 readme = { file = "README.md", content-type = "text/markdown" }
