@@ -25,7 +25,7 @@ fmchisel is built on **PyTorch** and integrates seamlessly with 📚 **🤗 Tran
 
 ### PyPi Package
 ```bash
-pip install fmchisel
+pip install fmchisel[all]
 ```
 
 #### Source
