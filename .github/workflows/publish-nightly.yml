@@ -25,6 +25,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install build twine wheel toml
 
+    - name: Update package name and version
+      run: |
+        VERSION=$(python -c "import toml; print(toml.load('pyproject.toml')['project']['version'])")
+        DATE=$(date +%Y%m%d%H%M%S)
+        NEW_VERSION="$VERSION.dev$DATE"
+        sed -i "s/name = \"fmchisel\"/name = \"fmchisel_nightly\"/" pyproject.toml
+        sed -i "s/version = \"$VERSION\"/version = \"$NEW_VERSION\"/" pyproject.toml
+
     - name: Build the binary
       run: python3 -m build
 
