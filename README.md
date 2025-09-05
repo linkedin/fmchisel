@@ -28,7 +28,7 @@ Install from source. Linux is required (enforced by setup). Installing on macOS 
 ```bash
 # Clone the repo
 git clone https://github.com/linkedin/FMCHISEL.git
-cd FMCHISEL
+cd fmchisel
 
 # Base install
 pip install -e .
