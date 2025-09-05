@@ -1,5 +1,5 @@
 <!-- PROJECT TITLE & BADGES -->
-<h1 align="center">FMCHISEL – Efficient Foundation Model Algorithms</h1>
+<h1 align="center">fmchisel – Efficient Foundation Model Algorithms</h1>
 
 <p align="center">
   <b>State-of-the-art compression & distillation recipes for Large Language Models</b><br/>
@@ -9,7 +9,7 @@
 
 ## ✨ Overview
 
-FMCHISEL (_Foundation&nbsp;Model&nbsp;Chisel_) is an **open-source research library** that makes it simple to:
+fmchisel (_Foundation&nbsp;Model&nbsp;Chisel_) is an **open-source research library** that makes it simple to:
 
 * **Compress** LLMs with cutting-edge pruning and quantization techniques.
 * **Distill** knowledge from larger models to smaller ones.
@@ -17,7 +17,7 @@ FMCHISEL (_Foundation&nbsp;Model&nbsp;Chisel_) is an **open-source research libr
 * **Train** efficiently with advanced optimizers such as schedule-free **AdamW**.
 * **Prototype** new compression ideas rapidly.
 
-FMCHISEL is built on **PyTorch** and integrates seamlessly with 📚 **🤗 Transformers**.
+fmchisel is built on **PyTorch** and integrates seamlessly with 📚 **🤗 Transformers**.
 
 ---
 
@@ -33,8 +33,8 @@ To install from source Linux is required (enforced by setup). Installing on macO
 
 ```bash
 # Clone the repo
-git clone https://github.com/linkedin/FMCHISEL.git
-cd FMCHISEL
+git clone https://github.com/linkedin/fmchisel.git
+cd fmchisel
 
 # Base install
 pip install -e .
@@ -185,7 +185,7 @@ See [LICENSE](LICENSE) for details.
                   Song, Qingquan and Kothapalli, Vignesh and Tang, Shao and 
                   Sang, Hejian and Gupta, Aman and Wang, Zhipeng and 
                   Dexter, Gregory and Zhu, Sirou and Zhu, Siyu},
-  title        = {FMCHISEL},
+  title        = {fmchisel},
   year         = {2025},
 }
 
