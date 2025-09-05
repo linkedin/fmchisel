@@ -8,10 +8,13 @@ The example scripts demonstrate how to **distill a large teacher model into a sm
 Make sure you have installed `fmchisel` and its dependencies before running the scripts.
 
 ```bash
-# 1. (Optional) Login to HF if model(s) are gated
+# 1. install fmchisel
+pip install fmchisel[all]
+
+# 2. (Optional) Login to HF if model(s) are gated
 huggingface-cli login
 
-# 2. Launch the example with default hyper-parameters
+# 3. Launch the example with default hyper-parameters
 bash run.sh
 ```
 

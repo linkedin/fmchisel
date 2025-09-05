@@ -14,10 +14,13 @@ FMCHISEL implements **QuantEase**. See the [QuantEase paper](https://arxiv.org/a
 ## 2. Getting Started
 
 ```bash
-# 1. (Optional) login to HF if models / datasets are gated
+# 1. install fmchisel
+pip install fmchisel[all]
+
+# 2. (Optional) login to HF if models / datasets are gated
 huggingface-cli login
 
-# 2. Quantize via passing YAML recipes
+# 3. Quantize via passing YAML recipes
 bash run_quantization.sh
 ```
 

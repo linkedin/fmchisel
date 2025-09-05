@@ -15,10 +15,13 @@ Because full structures are deleted, the pruned model runs with **standard Trans
 ## 2. Getting Started
 
 ```bash
-# 1. (Optional) login to HF if models / datasets are gated
+# 1. install fmchisel
+pip install fmchisel[all]
+
+# 2. (Optional) login to HF if models / datasets are gated
 huggingface-cli login
 
-# 2. Run structured pruning with default hyper-parameters
+# 3. Run structured pruning with default hyper-parameters
 bash run.sh
 ```
 

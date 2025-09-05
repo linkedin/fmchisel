@@ -14,13 +14,16 @@ FMCHISEL implements **ALPS** (ADMM-based Layerwise Pruning with Saliency) and wr
 ## 2. Getting Started
 
 ```bash
-# 1. (Optional) login to HF if models / datasets are gated
+# 1. install fmchisel
+pip install fmchisel[all]
+
+# 2. (Optional) login to HF if models / datasets are gated
 huggingface-cli login
 
-# 2a. Prune via direct CLI arguments
+# 3a. Prune via direct CLI arguments
 bash run.sh
 
-# 2b. Prune via a YAML recipe
+# 3b. Prune via a YAML recipe
 bash run_recipe.sh
 ```
 
