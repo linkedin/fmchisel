@@ -146,7 +146,6 @@ class PerTokenDistillationLoss(ABC, Module):
             if temperature != 1.0:
                 logits = logits / temperature
                 teacher_logits = teacher_logits / temperature
-            shifted_teacher_logits = teacher_logits if logits_shifted else teacher_logits[:, :-1, :].contiguous()
             shift_labels, shifted_logits, shifted_teacher_logits, loss_mask = self._shift_and_mask(
                 gt_token_ids, logits, teacher_logits, ignore_index, logits_shifted
             )
