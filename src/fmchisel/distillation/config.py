@@ -73,13 +73,11 @@ class DistillTrainingConfig:
     sample_method: Literal["supervised", "on-policy", "sequence-level"] = field(default="supervised")
     sample_fraction: float = field(
         default=1.0,
-        metadata={
-            "help": "Fraction of batches whose responses are sampled from student (on-policy) distribution \
+        metadata={"help": "Fraction of batches whose responses are sampled from student (on-policy) distribution \
                 or teacher (sequence-evel)  distribution rather than using the original responses, \
                 same as the huggingface GKD trainer (parameter self.lmbda). https://huggingface.co/docs/trl/gkd_trainer#trl.GKDConfig \
                 e.g., 0.4 means 40% of batches are using the responses sampled from student/teacher model, with 60% using original data \
-                Ignored when using supervised methods (ground-truth tokens)."
-        },
+                Ignored when using supervised methods (ground-truth tokens)."},
     )
     max_new_tokens: int = field(
         default=100,
@@ -89,10 +87,8 @@ class DistillTrainingConfig:
     )
     sample_temperature: float = field(
         default=0.8,
-        metadata={
-            "help": "Sample temperature used for on-policy or sequence-level response token generation. \
-                The higher the temperature, the more random the completions."
-        },
+        metadata={"help": "Sample temperature used for on-policy or sequence-level response token generation. \
+                The higher the temperature, the more random the completions."},
     )
     # [end] sampling and generation configs
     include_prompt_loss: bool = field(
