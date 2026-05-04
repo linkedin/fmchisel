@@ -95,7 +95,7 @@ def convert_checkpoints_to_hf(model_training_config, output_path, best_model_pat
 def train():
     pl.seed_everything(42)
     parser = HfArgumentParser((TrainingArgs, DataLoadingConfig, DistillTrainingConfig))
-    (model_training_config, data_config, distill_config, _) = parser.parse_args_into_dataclasses(
+    model_training_config, data_config, distill_config, _ = parser.parse_args_into_dataclasses(
         return_remaining_strings=True
     )
     if (

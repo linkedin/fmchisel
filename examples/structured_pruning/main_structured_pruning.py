@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 if __name__ == "__main__":
 
     parser = HfArgumentParser((StructuredPruningConfig, CalibrationDataConfig))
-    (pruning_config, data_config) = parser.parse_args_into_dataclasses()
+    pruning_config, data_config = parser.parse_args_into_dataclasses()
     logger.info(f"pruning_config = {pruning_config}")
     logger.info(f"data_config = {data_config}")
 
