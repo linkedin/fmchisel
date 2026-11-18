@@ -135,6 +135,9 @@ class DistillLanguageModel(pl.LightningModule):
         self.distill_loss_fn = DISTILL_LOSS_MAP[self.distill_training_config.distill_loss](
             **self.distill_training_config.distill_loss_kwargs
         )
+        # Only losses built with use_liger=True (e.g. "fljsd") take hidden states and
+        # lm_head weights. Every other loss expects logits, even when the model uses Liger.
+        self.distill_loss_takes_hidden_states = getattr(self.distill_loss_fn, "use_liger", False)
         if self.distill_training_config.compile_distill_loss:
             self.distill_loss_fn = torch.compile(self.distill_loss_fn)
         self.sample_fraction = self.distill_training_config.sample_fraction
@@ -461,7 +464,15 @@ class DistillLanguageModel(pl.LightningModule):
                 batch=kd_batch,
                 hidden_states=student_hidden_states,
             )
-            distillation_loss = self.compute_distillation_loss(kd_batch, student_hidden_states, teacher_hidden_states)
+            if self.distill_loss_takes_hidden_states:
+                distillation_loss = self.compute_distillation_loss(
+                    kd_batch, student_hidden_states, teacher_hidden_states
+                )
+            else:
+                student_logits = self.model.lm_head(student_hidden_states)
+                with torch.no_grad():
+                    teacher_logits = self.teacher_model.lm_head(teacher_hidden_states)
+                distillation_loss = self.compute_distillation_loss(kd_batch, student_logits, teacher_logits)
         else:
             with torch.no_grad():
                 teacher_outputs = self.teacher_model(
